@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+struct Node* head = NULL;
+void insertEnd(int val) {
+    struct Node* n = malloc(sizeof(struct Node));
+    n->data = val; n->next = NULL;
+    if (!head) head = n;
+    else {
+        struct Node* t = head;
+        while (t->next) t = t->next;
+        t->next = n;
+    }
+}
+void display() {
+    struct Node* t = head;
+    while (t) {
+        printf("%d ", t->data);
+        t = t->next;
+    }
+    printf("\n");
+}
+
+int main() {
+    int n, x;
+    printf("Enter how many numbers: ");
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++) {
+        printf("Enter number: ");
+        scanf("%d", &x);
+        insertEnd(x);
+    }
+    printf("Linked List: ");
+    display();
+    return 0;
+}
